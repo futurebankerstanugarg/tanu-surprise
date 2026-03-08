@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>For Tanu 🎈</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:linear-gradient(to top,#ffd6e7,#fff);
+text-align:center;
+overflow:hidden;
+}
+
+h1{
+margin-top:40px;
+}
+
+.balloon{
+width:80px;
+position:absolute;
+cursor:pointer;
+transition: transform 0.2s;
+}
+
+.balloon:hover{
+transform:scale(1.1);
+}
+
+#photoBox{
+position:fixed;
+bottom:40px;
+left:50%;
+transform:translateX(-50%);
+background:white;
+padding:10px;
+border-radius:12px;
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
+display:none;
+}
+
+#photoBox img{
+width:250px;
+border-radius:10px;
+}
+
+#finalMessage{
+display:none;
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:white;
+padding:30px;
+border-radius:20px;
+box-shadow:0 15px 40px rgba(0,0,0,0.3);
+font-size:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>Pop The Balloons 🎈</h1>
+<p>Each balloon has a surprise</p>
+
+<img src="https://cdn-icons-png.flaticon.com/512/3468/3468373.png" class="balloon" style="top:150px;left:20%;" onclick="popBalloon(1,this)">
+<img src="https://cdn-icons-png.flaticon.com/512/3468/3468373.png" class="balloon" style="top:250px;left:70%;" onclick="popBalloon(2,this)">
+<img src="https://cdn-icons-png.flaticon.com/512/3468/3468373.png" class="balloon" style="top:350px;left:40%;" onclick="popBalloon(3,this)">
+<img src="https://cdn-icons-png.flaticon.com/512/3468/3468373.png" class="balloon" style="top:200px;left:50%;" onclick="popBalloon(4,this)">
+
+<div id="photoBox">
+<img id="photo">
+<p id="caption"></p>
+</div>
+
+<div id="finalMessage">
+
+<h2>🎉 Happy Women's Day Tanu 🎉</h2>
+
+<p>
+
+You inspire thousands of students everyday.
+
+But today this small surprise is just to remind you
+that someone notices how special you are too.
+
+Lucky to have a friend like you.
+
+</p>
+
+</div>
+
+<script>
+
+let popped=0;
+
+function popBalloon(num,balloon){
+
+balloon.style.display="none";
+
+popped++;
+
+let photo=document.getElementById("photo");
+let caption=document.getElementById("caption");
+
+document.getElementById("photoBox").style.display="block";
+
+if(num==1){
+photo.src="photo1.jpg";
+caption.innerText="One of my favourite memories with you.";
+}
+
+if(num==2){
+photo.src="photo2.jpg";
+caption.innerText="You inspire more people than you realise.";
+}
+
+if(num==3){
+photo.src="photo3.jpg";
+caption.innerText="Future Bankers wouldn't be the same without you.";
+}
+
+if(num==4){
+photo.src="photo4.jpg";
+caption.innerText="And here's the final surprise…";
+}
+
+if(popped==4){
+
+setTimeout(function(){
+
+document.getElementById("photoBox").style.display="none";
+document.getElementById("finalMessage").style.display="block";
+
+},2000);
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
