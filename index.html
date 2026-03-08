@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
+
 <head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>For Tanu 🎈</title>
 
@@ -19,44 +22,89 @@ margin-top:40px;
 }
 
 .balloon{
-width:80px;
 position:absolute;
+font-size:55px;
 cursor:pointer;
-transition: transform 0.2s;
+animation:float 4s ease-in-out infinite;
 }
 
-.balloon:hover{
-transform:scale(1.1);
+@keyframes float{
+0%{transform:translateY(0)}
+50%{transform:translateY(-20px)}
+100%{transform:translateY(0)}
 }
 
 #photoBox{
 position:fixed;
-bottom:40px;
+bottom:30px;
 left:50%;
 transform:translateX(-50%);
 background:white;
 padding:10px;
-border-radius:12px;
+border-radius:15px;
 box-shadow:0 10px 30px rgba(0,0,0,0.2);
 display:none;
 }
 
 #photoBox img{
-width:250px;
+width:240px;
 border-radius:10px;
 }
 
 #finalMessage{
+
 display:none;
+
 position:fixed;
 top:50%;
 left:50%;
+
 transform:translate(-50%,-50%);
+
 background:white;
+
 padding:30px;
+
 border-radius:20px;
+
 box-shadow:0 15px 40px rgba(0,0,0,0.3);
+
+width:80%;
+
+}
+
+#typing{
+
 font-size:20px;
+
+line-height:1.5;
+
+}
+
+.confetti{
+
+position:fixed;
+
+width:10px;
+
+height:10px;
+
+background:red;
+
+top:-10px;
+
+animation:fall 4s linear infinite;
+
+}
+
+@keyframes fall{
+
+to{
+
+transform:translateY(100vh);
+
+}
+
 }
 
 </style>
@@ -66,32 +114,27 @@ font-size:20px;
 <body>
 
 <h1>Pop The Balloons 🎈</h1>
-<p>Each balloon has a surprise</p>
 
-<img src="https://cdn-icons-png.flaticon.com/512/3468/3468373.png" class="balloon" style="top:150px;left:20%;" onclick="popBalloon(1,this)">
-<img src="https://cdn-icons-png.flaticon.com/512/3468/3468373.png" class="balloon" style="top:250px;left:70%;" onclick="popBalloon(2,this)">
-<img src="https://cdn-icons-png.flaticon.com/512/3468/3468373.png" class="balloon" style="top:350px;left:40%;" onclick="popBalloon(3,this)">
-<img src="https://cdn-icons-png.flaticon.com/512/3468/3468373.png" class="balloon" style="top:200px;left:50%;" onclick="popBalloon(4,this)">
+<p>Each balloon hides a surprise</p>
+
+<div class="balloon" style="top:150px;left:20%" onclick="popBalloon(1,this)">🎈</div>
+<div class="balloon" style="top:300px;left:70%" onclick="popBalloon(2,this)">🎈</div>
+<div class="balloon" style="top:220px;left:50%" onclick="popBalloon(3,this)">🎈</div>
+<div class="balloon" style="top:400px;left:35%" onclick="popBalloon(4,this)">🎈</div>
 
 <div id="photoBox">
+
 <img id="photo">
+
 <p id="caption"></p>
+
 </div>
 
 <div id="finalMessage">
 
 <h2>🎉 Happy Women's Day Tanu 🎉</h2>
 
-<p>
-
-You inspire thousands of students everyday.
-
-But today this small surprise is just to remind you
-that someone notices how special you are too.
-
-Lucky to have a friend like you.
-
-</p>
+<p id="typing"></p>
 
 </div>
 
@@ -101,43 +144,115 @@ let popped=0;
 
 function popBalloon(num,balloon){
 
+balloon.innerHTML="💥";
+
+setTimeout(()=>{
+
 balloon.style.display="none";
+
+},300);
 
 popped++;
 
 let photo=document.getElementById("photo");
+
 let caption=document.getElementById("caption");
 
 document.getElementById("photoBox").style.display="block";
 
 if(num==1){
+
 photo.src="photo1.jpg";
-caption.innerText="One of my favourite memories with you.";
+
+caption.innerText="One of my favourite memories.";
+
 }
 
 if(num==2){
+
 photo.src="photo2.jpg";
+
 caption.innerText="You inspire more people than you realise.";
+
 }
 
 if(num==3){
+
 photo.src="photo3.jpg";
+
 caption.innerText="Future Bankers wouldn't be the same without you.";
+
 }
 
 if(num==4){
+
 photo.src="photo4.jpg";
+
 caption.innerText="And here's the final surprise…";
+
 }
 
 if(popped==4){
 
-setTimeout(function(){
+setTimeout(showFinal,2000);
+
+}
+
+}
+
+function showFinal(){
 
 document.getElementById("photoBox").style.display="none";
+
 document.getElementById("finalMessage").style.display="block";
 
-},2000);
+confetti();
+
+typeMessage();
+
+}
+
+function typeMessage(){
+
+let text="You inspire thousands of students everyday. But today this small surprise is just to remind you that someone notices how special you are too. Lucky to have a friend like you.";
+
+let i=0;
+
+let speed=40;
+
+function typing(){
+
+if(i<text.length){
+
+document.getElementById("typing").innerHTML+=text.charAt(i);
+
+i++;
+
+setTimeout(typing,speed);
+
+}
+
+}
+
+typing();
+
+}
+
+function confetti(){
+
+for(let i=0;i<80;i++){
+
+let conf=document.createElement("div");
+
+conf.className="confetti";
+
+conf.style.left=Math.random()*100+"vw";
+
+conf.style.backgroundColor=`hsl(${Math.random()*360},100%,50%)`;
+
+conf.style.animationDuration=(Math.random()*3+2)+"s";
+
+document.body.appendChild(conf);
 
 }
 
@@ -146,4 +261,5 @@ document.getElementById("finalMessage").style.display="block";
 </script>
 
 </body>
+
 </html>
