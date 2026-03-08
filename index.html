@@ -18,12 +18,13 @@ overflow:hidden;
 }
 
 h1{
-margin-top:40px;
+margin-top:30px;
+font-size:24px;
 }
 
 .balloon{
 position:absolute;
-font-size:55px;
+font-size:50px;
 cursor:pointer;
 animation:float 4s ease-in-out infinite;
 }
@@ -35,20 +36,67 @@ animation:float 4s ease-in-out infinite;
 }
 
 #photoBox{
+
 position:fixed;
-bottom:30px;
+
+top:50%;
+
 left:50%;
-transform:translateX(-50%);
+
+transform:translate(-50%,-50%);
+
 background:white;
-padding:10px;
+
+padding:15px;
+
 border-radius:15px;
-box-shadow:0 10px 30px rgba(0,0,0,0.2);
+
+box-shadow:0 10px 30px rgba(0,0,0,0.3);
+
+width:85%;
+
+max-width:300px;
+
 display:none;
+
+z-index:10;
+
 }
 
 #photoBox img{
-width:240px;
+
+width:100%;
+
 border-radius:10px;
+
+}
+
+#caption{
+
+margin-top:10px;
+
+font-size:16px;
+
+}
+
+#nextBtn{
+
+margin-top:12px;
+
+padding:10px 18px;
+
+border:none;
+
+border-radius:10px;
+
+background:#ff5fa2;
+
+color:white;
+
+font-size:16px;
+
+cursor:pointer;
+
 }
 
 #finalMessage{
@@ -56,26 +104,32 @@ border-radius:10px;
 display:none;
 
 position:fixed;
+
 top:50%;
+
 left:50%;
 
 transform:translate(-50%,-50%);
 
 background:white;
 
-padding:30px;
+padding:25px;
 
 border-radius:20px;
 
 box-shadow:0 15px 40px rgba(0,0,0,0.3);
 
-width:80%;
+width:85%;
+
+max-width:320px;
+
+z-index:20;
 
 }
 
 #typing{
 
-font-size:20px;
+font-size:18px;
 
 line-height:1.5;
 
@@ -117,16 +171,18 @@ transform:translateY(100vh);
 
 <p>Each balloon hides a surprise</p>
 
-<div class="balloon" style="top:150px;left:20%" onclick="popBalloon(1,this)">🎈</div>
+<div class="balloon" style="top:160px;left:15%" onclick="popBalloon(1,this)">🎈</div>
 <div class="balloon" style="top:300px;left:70%" onclick="popBalloon(2,this)">🎈</div>
-<div class="balloon" style="top:220px;left:50%" onclick="popBalloon(3,this)">🎈</div>
-<div class="balloon" style="top:400px;left:35%" onclick="popBalloon(4,this)">🎈</div>
+<div class="balloon" style="top:230px;left:50%" onclick="popBalloon(3,this)">🎈</div>
+<div class="balloon" style="top:420px;left:30%" onclick="popBalloon(4,this)">🎈</div>
 
 <div id="photoBox">
 
 <img id="photo">
 
 <p id="caption"></p>
+
+<button id="nextBtn" onclick="closePhoto()">Next Balloon 🎈</button>
 
 </div>
 
@@ -194,9 +250,15 @@ caption.innerText="And here's the final surprise…";
 
 if(popped==4){
 
-setTimeout(showFinal,2000);
+setTimeout(showFinal,1500);
 
 }
+
+}
+
+function closePhoto(){
+
+document.getElementById("photoBox").style.display="none";
 
 }
 
